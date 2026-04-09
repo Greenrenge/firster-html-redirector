@@ -1,0 +1,36 @@
+# build output
+dist/
+.dist/
+
+# dependencies
+node_modules/
+
+# environment variables
+.env
+.env.local
+.env.*.local
+
+# build artifacts
+.astro/
+.rollup.cache/
+.turbo/
+
+# dev files
+.DS_Store
+Thumbs.db
+
+# logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# wrangler (for Cloudflare)
+.wrangler/
