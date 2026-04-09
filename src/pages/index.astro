@@ -1,0 +1,38 @@
+---
+import Base from '../layouts/Base.astro';
+import { GTM_ID } from '../config/analytics';
+
+const redirectUrl = import.meta.env.PUBLIC_REDIRECT_URL ?? 'https://www.kingpower.com';
+
+const url = new URL(Astro.url.href);
+const utmParams = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content'];
+const utms = utmParams
+  .filter(p => url.searchParams.has(p))
+  .map(p => `${p}=${encodeURIComponent(url.searchParams.get(p) ?? '')}`)
+  .join('&');
+
+const finalUrl = utms ? `${redirectUrl}?${utms}` : redirectUrl;
+---
+
+<Base>
+  <meta http-equiv="refresh" content={`5;url=${finalUrl}`} />
+  <script define:vars={{ finalUrl }}>
+    setTimeout(() => { window.location.href = finalUrl; }, 5000);
+  </script>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      background: #f5f5f5;
+    }
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+  </style>
+  <img src="/favicon.svg" alt="Loading" />
+</Base>

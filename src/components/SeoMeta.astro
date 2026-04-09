@@ -1,0 +1,30 @@
+---
+const {
+  title = 'King Power',
+  description = 'Redirecting to King Power...',
+  ogImage = '/favicon.svg',
+  canonicalUrl = '/',
+} = Astro.props;
+
+const siteTitle = import.meta.env.PUBLIC_SITE_TITLE ?? title;
+const siteDescription = import.meta.env.PUBLIC_SITE_DESCRIPTION ?? description;
+---
+
+<title>{siteTitle}</title>
+<meta name="description" content={siteDescription} />
+<meta name="robots" content="noindex, nofollow" />
+
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+<meta property="og:type" content="website" />
+<meta property="og:title" content={siteTitle} />
+<meta property="og:description" content={siteDescription} />
+<meta property="og:image" content={ogImage} />
+<meta property="og:url" content={canonicalUrl} />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={siteTitle} />
+<meta name="twitter:description" content={siteDescription} />
+<meta name="twitter:image" content={ogImage} />
+
+<link rel="canonical" href={canonicalUrl} />
